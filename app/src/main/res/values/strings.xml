@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WantuApp</string>
+
+    <string name="txt_todo">TodoList</string>
+    <string name="txt_bucket">BucketList</string>
+    <string name="txt_write">WriteScreen</string>
+</resources>
