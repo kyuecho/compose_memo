@@ -5,7 +5,6 @@ import androidx.annotation.StringRes
 import com.kecho.wantuapp.R
 import com.kecho.wantuapp.utils.Constant.BUCKET_LIST
 import com.kecho.wantuapp.utils.Constant.TODO_LIST
-import com.kecho.wantuapp.utils.Constant.WRITE
 
 sealed class BottomNavItem(
     @StringRes val title: Int,

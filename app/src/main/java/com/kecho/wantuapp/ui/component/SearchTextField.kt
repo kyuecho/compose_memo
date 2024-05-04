@@ -35,7 +35,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.kecho.wantuapp.ui.viewmodel.TodoViewModel
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
