@@ -1,4 +1,4 @@
-package com.kecho.wantuapp.ui.component
+package com.kecho.wantuapp.ui.component.todo
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

@@ -1,5 +1,6 @@
 package com.kecho.wantuapp.ui.screen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.kecho.wantu.domain.model.TodoModel
 import com.kecho.wantuapp.ui.theme.navy
 import com.kecho.wantuapp.ui.theme.softYellow
 import com.kecho.wantuapp.ui.viewmodel.TodoViewModel
@@ -38,13 +40,15 @@ fun WriteTodoScreen(
     todoViewModel: TodoViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
+    val modifyItem : TodoModel? = navController.previousBackStackEntry?.savedStateHandle?.get("todo")
+
     var memo by rememberSaveable {
-        mutableStateOf("")
+        mutableStateOf(modifyItem?.memo ?: "")
     }
 
     Scaffold(
         topBar = {
-            BackTopBar(memo, todoViewModel, navController)
+            BackTopBar(memo, modifyItem, todoViewModel, navController)
         },
         modifier = Modifier.fillMaxSize(),
     ) { it ->
@@ -75,6 +79,7 @@ fun WriteTodoScreen(
 @Composable
 fun BackTopBar(
     memo : String,
+    modifyTodoModel: TodoModel?,
     todoViewModel : TodoViewModel,
     navController: NavHostController) {
     TopAppBar(
@@ -85,7 +90,12 @@ fun BackTopBar(
         ),
         navigationIcon = {
             IconButton(onClick = {
-                todoViewModel.addTodo(memo)
+                if (modifyTodoModel != null) {
+                    todoViewModel.updateTodo(memo, modifyTodoModel)
+                } else {
+                    todoViewModel.addTodo(memo)
+                }
+
                 navController.popBackStack()
             }) {
                 Icon(

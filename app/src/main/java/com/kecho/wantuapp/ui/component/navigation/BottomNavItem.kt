@@ -1,4 +1,4 @@
-package com.kecho.wantuapp.ui.component
+package com.kecho.wantuapp.ui.component.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

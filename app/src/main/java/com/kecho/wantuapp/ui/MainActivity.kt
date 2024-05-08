@@ -37,7 +37,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.kecho.wantuapp.ui.component.BottomNavItem
+import com.kecho.wantuapp.ui.component.navigation.BottomNavItem
 import com.kecho.wantuapp.ui.screen.BucketListScreen
 import com.kecho.wantuapp.ui.screen.TodoScreen
 import com.kecho.wantuapp.ui.screen.WriteTodoScreen
@@ -67,9 +67,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ScaffoldTrigger(navController: NavHostController) {
     Scaffold(
-        topBar = {
-            TopBar()
-        },
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             BottomNavigation(
@@ -164,40 +161,4 @@ private fun BottomNavigation(
             }
         }
     }
-}
-
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TopBar() {
-    val currentDate = LocalDate.now()  // 현재 날짜를 가져옴 val formattedDate =
-    val formattedDate =
-        currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd(EEE)", Locale.KOREA))
-
-    val text = buildAnnotatedString {
-        withStyle(style = SpanStyle(fontWeight = FontWeight.Normal, fontSize = 12.sp)) {
-            append("Today is ")
-        }
-        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, fontSize = 16.sp)) {
-            append(formattedDate)
-        }
-        append(" ٩(ˊᗜˋ*)و")
-    }
-    TopAppBar(
-        title = { Text("$text") },
-        colors = TopAppBarDefaults.smallTopAppBarColors(
-            containerColor = navy,
-            titleContentColor = Color.White
-        ),
-
-        actions = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Filled.List,
-                    tint = Color.White,
-                    contentDescription = "add"
-                )
-            }
-        }
-    )
 }

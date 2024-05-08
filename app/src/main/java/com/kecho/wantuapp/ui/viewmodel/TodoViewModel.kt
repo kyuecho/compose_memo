@@ -1,6 +1,7 @@
 package com.kecho.wantuapp.ui.viewmodel
 
 import android.app.Application
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
@@ -41,20 +42,27 @@ class TodoViewModel @Inject constructor(
         searchTodosUseCase.execute(query)
             .collect { todos ->
                 _items.value = todos
-            } ?: emptyList<TodoModel>()
+            }
     }
 
     fun addTodo(text: String) = viewModelScope.launch {
         addTodoUseCase.execute(TodoModel(memo = text))
     }
 
+    fun updateTodo(text: String, todoModel: TodoModel) = viewModelScope.launch {
+        val todo = _items.value.find { todo -> todo.uid == todoModel.uid }
+        todo?.let {
+            viewModelScope.launch {
+                updateTodoUseCase.execute(it.copy(memo = text))
+            }
+        }
+    }
+
     fun updateIsDone(id: Int) {
         val todo = _items.value.find { todo -> todo.uid == id }
         todo?.let {
             viewModelScope.launch {
-                updateTodoUseCase.execute(it.copy(isDone = !it.isDone).apply {
-                    uid = it.uid
-                })
+                updateTodoUseCase.execute(it.copy(isDone = !it.isDone))
             }
         }
     }

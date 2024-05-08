@@ -1,4 +1,4 @@
-package com.kecho.wantuapp.ui.component
+package com.kecho.wantuapp.ui.component.search
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

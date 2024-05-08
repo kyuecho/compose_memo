@@ -1,5 +1,6 @@
 package com.kecho.wantu.domain.model
 
+import java.io.Serializable
 import java.util.Calendar
 
 data class TodoModel(
@@ -7,4 +8,4 @@ data class TodoModel(
     val memo: String,
     val date: Long = Calendar.getInstance().timeInMillis,
     val isDone: Boolean = false,
-)
+) : Serializable
