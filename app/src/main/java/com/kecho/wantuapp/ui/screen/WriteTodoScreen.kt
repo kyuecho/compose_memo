@@ -33,6 +33,7 @@ import com.kecho.wantu.domain.model.TodoModel
 import com.kecho.wantuapp.ui.theme.navy
 import com.kecho.wantuapp.ui.theme.softYellow
 import com.kecho.wantuapp.ui.viewmodel.TodoViewModel
+import com.kecho.wantuapp.utils.Constant
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +41,8 @@ fun WriteTodoScreen(
     todoViewModel: TodoViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
-    val modifyItem : TodoModel? = navController.previousBackStackEntry?.savedStateHandle?.get("todo")
+    val modifyItem : TodoModel? = navController.previousBackStackEntry?.savedStateHandle?.get(Constant.TODO)
+    navController.currentBackStackEntry?.savedStateHandle?.remove<TodoModel>(Constant.TODO)
 
     var memo by rememberSaveable {
         mutableStateOf(modifyItem?.memo ?: "")
@@ -95,7 +97,6 @@ fun BackTopBar(
                 } else {
                     todoViewModel.addTodo(memo)
                 }
-
                 navController.popBackStack()
             }) {
                 Icon(

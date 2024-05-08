@@ -115,7 +115,7 @@ fun TodoScreen(
                                 onDeleteClick = { todoViewModel.deleteTodo(memo.uid) },
                                 onUpdateClick = { todo ->
                                     Log.d("KETEST", "todo : $todo")
-                                    navController.currentBackStackEntry?.savedStateHandle?.set("todo", todo)
+                                    navController.currentBackStackEntry?.savedStateHandle?.set(Constant.TODO, todo)
                                     navController.navigate(Constant.WRITE)
                                 }
                             )
