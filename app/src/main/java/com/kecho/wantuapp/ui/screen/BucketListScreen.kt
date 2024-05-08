@@ -16,7 +16,7 @@ import com.kecho.wantuapp.ui.theme.WantuAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BucketListScreen() {
-    Scaffold (
+    Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = { DailyTopBar() }
     ) {
